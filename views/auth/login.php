@@ -1,64 +1,94 @@
 <?php
+
 session_start();
-include 'conexion.php';
+require 'config/conexion.php';
 
-if(isset($_POST['login'])) {
+$usuario = $_POST['usuario'];
+$password = $_POST['password'];
 
-    $usuario = $_POST['usuario'];
-    $password = $_POST['password'];
+$stmt = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ?");
+$stmt->bind_param("s", $usuario);
+$stmt->execute();
 
-    $query = mysqli_query($conn, "SELECT * FROM usuarios
-    WHERE usuario='$usuario' AND contraseña='$password'");
+$result = $stmt->get_result();
+$datos = $result->fetch_assoc();
 
-    if(mysqli_num_rows($query) > 0) {
+if ($datos && password_verify($password, $datos['contraseña'])) {
 
-        $datos = mysqli_fetch_assoc($query);
+    $_SESSION['usuario'] = $datos['nombre'];
 
-        $_SESSION['usuario'] = $datos['nombre'];
-        $_SESSION['rol'] = $datos['rol'];
-        $_SESSION['id_usuario'] = (int)($datos['id_usuario'] ?? 0);
+    header("Location: index.php");
+    exit;
 
-        header('Location: dashboard.php');
-
-    } else {
-        $error = "Usuario o contraseña incorrectos";
-    }
+} else {
+    echo "Usuario o contraseña incorrectos";
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>Login</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="/evolucion_medic/public/css/styles.css">
+
 </head>
+
 <body class="login-body">
 
 <div class="login-container">
 
     <div class="login-card">
 
-        <h1 class="logo-title">EVOLUCIONMEDIC</h1>
-        <p class="subtitle">Sistema Inteligente Médico</p>
+        <h1 class="logo-title">
+            EVOLUCIONMEDIC
+        </h1>
+
+        <p class="subtitle">
+            Sistema Inteligente Médico
+        </p>
 
         <?php if(isset($error)) { ?>
+
             <div class="alert alert-danger">
-                <?php echo $error; ?>
+
+                <?= $error ?>
+
             </div>
+
         <?php } ?>
 
         <form method="POST">
 
-            <input type="text" name="usuario" class="form-control mb-3" placeholder="Usuario">
+            <input type="text"
+                   name="usuario"
+                   class="form-control mb-3"
+                   placeholder="Usuario"
+                   required>
 
-            <input type="password" name="password" class="form-control mb-4" placeholder="Contraseña">
+            <input type="password"
+                   name="password"
+                   class="form-control mb-4"
+                   placeholder="Contraseña"
+                   required>
 
-            <button type="submit" name="login" class="btn btn-login w-100">
+            <button type="submit"
+                    name="login"
+                    class="btn btn-login w-100">
+
                 Ingresar
+
             </button>
 
         </form>
@@ -68,4 +98,6 @@ if(isset($_POST['login'])) {
 </div>
 
 </body>
+
+</html>
 </html>
