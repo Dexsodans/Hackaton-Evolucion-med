@@ -1,20 +1,57 @@
 <?php
 
-require '../controllers/ProductoController.php';
-require '../controllers/VentaController.php';
+require_once __DIR__ . '/../controllers/ProductoController.php';
+require_once __DIR__ . '/../controllers/VentaController.php';
+require_once __DIR__ . '/../controllers/CompraController.php';
 
-$url = $_SERVER['REQUEST_URI'];
+$route = $_GET['route'] ?? '';
 
-if ($url == '/productos') {
+/*
+|--------------------------------------------------------------------------
+| PRODUCTOS
+|--------------------------------------------------------------------------
+*/
+
+if ($route == 'productos') {
 
     $controller = new ProductoController();
     $controller->index();
 
+    exit;
 }
 
-if ($url == '/ventas') {
+/*
+|--------------------------------------------------------------------------
+| VENTAS
+|--------------------------------------------------------------------------
+*/
+
+if ($route == 'ventas') {
 
     $controller = new VentaController();
     $controller->index();
 
+    exit;
 }
+
+/*
+|--------------------------------------------------------------------------
+| COMPRAS
+|--------------------------------------------------------------------------
+*/
+
+if ($route == 'compras') {
+
+    $controller = new CompraController();
+    $controller->index();
+
+    exit;
+}
+
+/*
+|--------------------------------------------------------------------------
+| DASHBOARD
+|--------------------------------------------------------------------------
+*/
+
+echo "Dashboard";

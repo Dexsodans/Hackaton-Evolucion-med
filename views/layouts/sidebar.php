@@ -1,23 +1,30 @@
-<div class="sidebar">
+<div class="bg-dark text-white p-3"
+     style="width:250px;height:100vh;position:fixed;">
 
-    <h2>🏥 Sistema Médico</h2>
+    <h3 class="text-info mb-4">
+        🏥 Sistema Médico
+    </h3>
 
-    <ul>
-        <li><a href="/dashboard">Dashboard</a></li>
+    <ul class="nav flex-column">
 
-        <li><a href="/productos">Productos</a></li>
+        <li class="nav-item mb-2">
 
-        <li><a href="/inventario">Inventario</a></li>
+            <a class="nav-link text-white"
+               href="index.php">
+                📊 Dashboard
+            </a>
 
-        <li><a href="/compras">Compras</a></li>
+        </li>
 
-        <li><a href="/ventas">Ventas</a></li>
+        <li class="nav-item mb-2">
 
-        <li><a href="/proveedores">Proveedores</a></li>
+            <a class="nav-link text-white"
+               href="index.php?route=compras">
+                🛒 Compras
+            </a>
 
-        <li><a href="/usuarios">Usuarios</a></li>
+        </li>
 
-        <li><a href="/logout">Cerrar sesión</a></li>
     </ul>
 
 </div>
