@@ -1,5 +1,3 @@
-<?php include("data/ventas.php"); ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="/evolucion_medic/public/css/styles.css">
 </head>
 
 <body>
