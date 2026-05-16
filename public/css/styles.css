@@ -650,3 +650,50 @@ body{
     grid-template-columns:1fr;
   }
 }
+body {
+    background-color: #0f172a;
+    color: white;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #111827;
+    border-right: 2px solid #0dcaf0;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.sidebar-logo {
+    font-size: 55px;
+    color: #0dcaf0;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.menu-link:hover {
+    background-color: #0dcaf0;
+    color: black !important;
+    transform: translateX(5px);
+}
+
+/* CONTENIDO */
+
+.main-content {
+    margin-left: 280px;
+    padding: 20px;
+}
